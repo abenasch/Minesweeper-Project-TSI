@@ -21,7 +21,15 @@ public class Cell {
     }
 
     public void setHasFlag() {
-        this.hasFlag = true;
+        if (isOpen){
+            System.out.println("This cell is already open");
+        }
+        else if (!hasFlag) {
+            this.hasFlag = true;
+        }
+        else {
+            this.hasFlag = false;
+        }
     }
 
     public boolean getisOpen() {
@@ -34,6 +42,9 @@ public class Cell {
     }
 
     public String reveal() { //flag unicode: 🚩
+        if (isHasFlag()){
+            return " \uD83D\uDEA9";
+        }
         if(isOpen) {
             if(hasMine){
                 return " \uD83D\uDCA3";
