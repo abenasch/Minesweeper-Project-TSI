@@ -16,12 +16,24 @@ public class Cell {
         isOpen = true;
     }
 
+    public boolean isHasFlag() {
+        return hasFlag;
+    }
+
+    public void setHasFlag() {
+        this.hasFlag = true;
+    }
+
+    public boolean getisOpen() {
+        return isOpen;
+    }
+
     public int getNeighbouringMine() {
 
         return NeighbouringMine;
     }
 
-    public String reveal() {
+    public String reveal() { //flag unicode: 🚩
         if(isOpen) {
             if(hasMine){
                 return " \uD83D\uDCA3";
@@ -33,6 +45,10 @@ public class Cell {
         } else {
             return " * ";
         }
+    }
+
+    public boolean getHasMine() {
+        return hasMine;
     }
 
     public void setHasMine() {
