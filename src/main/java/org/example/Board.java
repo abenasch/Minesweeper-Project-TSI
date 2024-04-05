@@ -1,6 +1,6 @@
 package org.example;
 import  java.util.*;
-public class Board {
+public class Board { //creates the board, asssigns mines, prints board when required
 
     private int TotalOpened;
     private final int width;
@@ -8,7 +8,7 @@ public class Board {
     private Cell [][] cells;
     private ArrayList<Cell> minesList = new ArrayList<Cell>();
 
-    public Board(int width, int height) {
+    public Board(int width, int height) { //generates cells in vector (width x height)
         this.width = width;
         this.height = height;
         this.TotalOpened = 0;
@@ -19,7 +19,7 @@ public class Board {
             }
         }
     }
-    public void printBoard() {
+    public void printBoard() { //print board by calling reveal() on each cell
         for(int y = 0; y < height; y++) {
             for(int x = 0; x < width; x++) {
                 System.out.print(cells[x][y].reveal());
@@ -32,21 +32,21 @@ public class Board {
 
     public int getTotalOpened() {
         return TotalOpened;
-    }
+    } //returns total Opened cells
 
     public Cell[][] getCells() {
         return cells;
-    }
+    } //getter for cells
 
-    public void OpenCell(int x, int y){
+    public void OpenCell(int x, int y){ //Opens a cell and adds a counter to TotalOpened
         TotalOpened ++;
         cells[x][y].Open();
-        if (cells[x][y].getNeighbouringMine() == 0 && !cells[x][y].getHasMine()){
+        if (cells[x][y].getNeighbouringMine() == 0 && !cells[x][y].getHasMine()){ //if it has no neighbouring mines (neighbouringMine=0), open all neighbours
             OpenAllNeighbours(x ,y);
         }
     }
 
-    private void OpenAllNeighbours(int x, int y) {
+    private void OpenAllNeighbours(int x, int y) { //if statements checking neighbours are in board range, and if so open them.
         if (x-1>=0 && y-1>=0){
             if (!cells[x - 1][y - 1].getisOpen()) {
                 OpenCell(x - 1, y - 1);
@@ -90,7 +90,7 @@ public class Board {
     }
 
 
-    public void generateMines(int mines) {
+    public void generateMines(int mines) { //creates mines in randomised positions
         Random random = new Random();
 
         for (int a = 0; a < mines; a++){
@@ -105,7 +105,7 @@ public class Board {
         }
     }
 
-    private void addMine(Position position) {
+    private void addMine(Position position) {  //add a mine in specified position, add one to NeighbouringMine counter to all neighbouring cells of that mine if in range
 
         cells[position.getX()][position.getY()].setHasMine();
         if ((position.getX()-1)>=0 && position.getY()-1>=0){
@@ -134,7 +134,7 @@ public class Board {
         }
     }
 
-    public void revealAllMines() {
+    public void revealAllMines() { //show all mines when user loses
         for (Cell cell: minesList){
             cell.Open();
         }

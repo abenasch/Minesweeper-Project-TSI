@@ -1,6 +1,6 @@
 package org.example;
 
-public class Position {
+public class Position { //coordinates coresponding to each cell on the board (should have done input validation in here)
     public int x;
     public int y;
 
@@ -12,7 +12,7 @@ public class Position {
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
-        System.out.println("Bomb at: x="+ x+ " y="+y );
+ //       System.out.println("Bomb at: x="+ x+ " y="+y );
 
     }
 

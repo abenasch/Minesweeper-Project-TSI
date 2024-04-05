@@ -1,6 +1,6 @@
 package org.example;
 
-public class Cell {
+public class Cell { //each cell has 3 different boolean state conditions, and a counter to know how many mines are neighbouring.
     private boolean hasMine;
     private boolean isOpen;
     private boolean hasFlag;
@@ -14,13 +14,13 @@ public class Cell {
     }
     public void Open() {
         isOpen = true;
-    }
+    } //set state of cell to Open
 
     public boolean isHasFlag() {
         return hasFlag;
-    }
+    } //getter flag status, check if Cell has a flag
 
-    public void setHasFlag() {
+    public void setHasFlag() { //if flag isn't opened, toggle the flag state
         if (isOpen){
             System.out.println("This cell is already open");
         }
@@ -34,23 +34,23 @@ public class Cell {
 
     public boolean getisOpen() {
         return isOpen;
-    }
+    } //check if cell is open
 
-    public int getNeighbouringMine() {
+    public int getNeighbouringMine() { //return the counter
 
         return NeighbouringMine;
     }
 
-    public String reveal() { //flag unicode: 🚩
+    public String reveal() { //flag unicode: 🚩, mine unicode: 💣 otherwise *
         if (isHasFlag()){
             return " \uD83D\uDEA9";
         }
-        if(isOpen) {
-            if(hasMine){
+        if(getisOpen()) {
+            if(getHasMine()){
                 return " \uD83D\uDCA3";
             }
             else{
-                return( " " +Integer.toString(getNeighbouringMine()) + " ");
+                return( " " + getNeighbouringMine() + " ");
             }
 
         } else {
@@ -60,15 +60,15 @@ public class Cell {
 
     public boolean getHasMine() {
         return hasMine;
-    }
+    } //check if cell has a mine
 
     public void setHasMine() {
         this.hasMine = true;
-    }
+    } //set this cell to have a mine
 
 
     public void addNeighbourMine() {
         this.NeighbouringMine++;
-    }
+    } //add 1 to counter
 }
 
