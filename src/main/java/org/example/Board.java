@@ -3,8 +3,8 @@ import  java.util.*;
 public class Board {
 
     private int TotalOpened;
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     private Cell [][] cells;
     private ArrayList<Cell> minesList = new ArrayList<Cell>();
 

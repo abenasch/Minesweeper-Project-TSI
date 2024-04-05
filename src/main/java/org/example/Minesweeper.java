@@ -16,13 +16,13 @@ public class Minesweeper {
         do {
             System.out.println("Found cells: "+board.getTotalOpened()+ "/90");
             board.printBoard();
-            Position move;
-            move = getInput();
             if(board.getTotalOpened() == 90){
                 board.printBoard();
                 System.out.println("You have found all the Mines! You WIN");
                 GameOver = true;
             }
+            Position move;
+            move = getInput();
             if (move.getX()!=-99 && move.getX()!=-98){
                 Cell cell = board.getCells()[move.getX()][move.getY()];
                 if (cell.getisOpen() || cell.isHasFlag()){
@@ -40,7 +40,7 @@ public class Minesweeper {
                 }
             }
             else if (move.getX()==-99) {
-                System.out.println("invalid input, please provide 2 numbers in the form 'X Y'");
+                System.out.println("invalid input, please provide 2 numbers (0 - 9) in the form 'X Y'");
                 move.setX(0);
                 scanner = new Scanner(System.in);
             }
@@ -97,8 +97,8 @@ public class Minesweeper {
         }
         System.out.println("You have entered: x= " + input.getX() + " y = " + input.getY() + " TO FLAG");
         if (input.getX() > 9 || input.getX() < 0 || input.getY() > 9 || input.getY() < 0) {
-            System.out.println("invalid inputs, make sure that the inputs are within the range 0-9, please try again ");
             scanner = new Scanner(System.in);
+            input.setX(-99);
         }
         else{
             board.getCells()[input.getX()][input.getY()].setHasFlag();
